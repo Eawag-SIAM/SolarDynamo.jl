@@ -1,30 +1,22 @@
 module SolarDynamo
 
-
-"""
-Include the following lines in the main script:
----
-include("./SDDESolarDynamo.jl")
-using .SDDESolarDynamo
----
-This gives access to functions 'bfield' and 'sn'
-
-See here for the SDDE interface: https://docs.sciml.ai/DiffEqDocs/stable/tutorials/dde_example/
-"""
-
 export bfield, sn
 
 using StochasticDelayDiffEq
 using SpecialFunctions: erf
 using StaticArrays
 
+
+
 # --- Nonlinear function
+
 ftilde(x, Bmin, Bmax) = x/4 * (1 + erf(x^2-Bmin^2)) * (1 - erf(x^2-Bmax^2))
 
 
 # ---------------------------------
 # B-field WITHOUT Jupiter
 # ---------------------------------
+# See here for the SDDE interface: https://docs.sciml.ai/DiffEqDocs/stable/tutorials/dde_example/
 
 # --- Model : B field
 
@@ -67,17 +59,26 @@ function bfield(θ, Tsim; kwargs...)
 end
 
 
+"""
+```
+sn(θ; Tobs = 929, Twarmup = 200, kwargs...)
+```
 
-# --- SN from B field
+Stochastic simulations of the number of sunspots
 
-# Data-generating model
+### Arguments
+- `θ`: parameter vector `[τ, T, Nd, sigma, Bmax]`
+- `Tobs`: length of the output
+- `Twarmup`: length of the warm up period
+- `kwargs...`: keyword arguments pased to `solve`. Mostly used ot pass a seed for the random number generator (`seed = 123`).
+"""
 function sn(θ; Twarmup = 200, Tobs = 929, kwargs...)
 
     Tsim = Twarmup + Tobs  # Total simulation steps
 
     sol = bfield(θ, Tsim; kwargs...)
 
-    # square result and get rid of warmup points
+    # square result and get rid of warm up points
     y = map(abs2, sol[1, (Twarmup + 2):end])
 
     return y
