@@ -1,6 +1,6 @@
 module SolarDynamo
 
-export bfield, sn
+export sn
 
 using StochasticDelayDiffEq
 using SpecialFunctions: erf

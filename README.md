@@ -4,14 +4,14 @@
 [![Coverage](https://codecov.io/gh/Eawag-SIAM/SolarDynamo.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/Eawag-SIAM/SolarDynamo.jl)
 
 
-Stochastic simulation of the number of sun spots.
+Stochastic simulation of the number of sunspots.
 
 
 ## Installation
 
 
 ```Julia
-] add ...
+] add https://github.com/Eawag-SIAM/SolarDynamo.jl
 ```
 
 ## Usage
@@ -21,10 +21,10 @@ Stochastic simulation of the number of sun spots.
 using SolarDynamo
 
 θ = [2.0,  # τ
-	3,     # T
-	8.5,   # Nd
-	0.1,   # sigma
-	10]    # Bmax
+     3,     # T
+     8.5,   # Nd
+     0.1,   # sigma
+     10]    # Bmax
 
 sn(θ, Tobs = 929, Twarmup = 200)
 
