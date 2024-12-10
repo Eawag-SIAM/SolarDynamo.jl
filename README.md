@@ -11,7 +11,7 @@ Stochastic simulation of the number of sunspots.
 
 
 ```Julia
-] add https://github.com/Eawag-SIAM/SolarDynamo.jl
+] add git@github.com:Eawag-SIAM/SolarDynamo.jl.git
 ```
 
 ## Usage
