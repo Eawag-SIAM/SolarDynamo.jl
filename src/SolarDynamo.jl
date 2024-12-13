@@ -1,11 +1,11 @@
 module SolarDynamo
 
-export sn
+export sn, summary_statistics, hann_window
 
 using StochasticDelayDiffEq
 using SpecialFunctions: erf
 using StaticArrays
-
+import FFTW
 
 
 # --- Nonlinear function
@@ -82,6 +82,39 @@ function sn(θ; Twarmup = 200, Tobs = 929, kwargs...)
     y = map(abs2, sol[1, (Twarmup + 2):end])
 
     return y
+end
+
+
+
+# -------------
+# Summary statistics
+# -------------
+
+
+"""
+`hann_window(Tmax)`
+
+Generate a Hann window of size `Tmax`.
+"""
+hann_window(Tmax) = [0.5*(1 - cos(2.0*π*(t-1)/(Tmax-1))) for t in 1:Tmax]
+
+
+"""
+`summary_statistics(data, window; fourier_range=1:6:120)`
+
+Compute summary statistics for the input data based on the Fourier transform using a given window.
+
+## Arguments
+
+- `data`: The input time series data.
+- `window`: Vector of windowing weights to be applied to the data. Defaults to `hann_window(length(data))`.
+- `fourier_range`: Indices of the Fourier-transformed components to include in as summary statistics. Defaults to `1:6:120`.
+"""
+function summary_statistics(data, window=hann_window(length(data));
+                            fourier_range=1:6:120)
+    fs = FFTW.ifft(window .* data)
+    ss = abs.(fs[fourier_range])
+    return ss
 end
 
 

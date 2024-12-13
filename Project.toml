@@ -4,11 +4,13 @@ authors = ["Simone Ulzega", "Andreas Scheidegger"]
 version = "1.0.0"
 
 [deps]
+FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 StochasticDelayDiffEq = "29a0d76e-afc8-11e9-03a4-eda52ae4b960"
 
 [compat]
+FFTW = "1.8.0"
 SpecialFunctions = "2.4.0"
 StaticArrays = "1.9.8"
 StochasticDelayDiffEq = "1.8.0"

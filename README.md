@@ -26,9 +26,24 @@ using SolarDynamo
      0.1,   # sigma
      10]    # Bmax
 
+# -- run model
+
 sn(θ, Tobs = 929, Twarmup = 200)
 
-
-# providing a random seed to the solver
+# You can provide a random seed to the solver
 sn(θ, Tobs = 929, Twarmup = 200, seed=314)
+
+
+# -- Compute summary statics based on Fourier components
+
+res = sn(θ, Tobs = 929)
+summary_statistics(res)
+
+
+# The window weights can also be precomputed:
+
+Tobs = 929
+window = hann_window(Tobs)
+summary_statistics(res, window)
+
 ```
