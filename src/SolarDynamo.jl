@@ -24,7 +24,6 @@ function f(u,h,p,t)     # Drift function
     #  u = [B, dB/dt]
     # du = [dB/dt, d^2B/dt^2]
     τ, T, Nd, sigma, Bmax = p
-    # --- with Jupiter
     hist = h(p, t - T, idxs = 1)    # B[1](t-T)
     du1 = u[2]
     du2 = -u[1]/τ^2 - 2*u[2]/τ - Nd/τ^2*ftilde(hist, 1, Bmax)
