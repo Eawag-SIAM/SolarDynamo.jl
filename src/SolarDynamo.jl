@@ -2,7 +2,8 @@ module SolarDynamo
 
 export sn, summary_statistics, hann_window
 
-using StochasticDelayDiffEq
+using DelayDiffEq: SDDEProblem, solve
+using StochasticDiffEq: EM
 using SpecialFunctions: erf
 using StaticArrays
 import FFTW

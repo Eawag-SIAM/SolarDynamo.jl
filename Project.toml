@@ -1,19 +1,21 @@
 name = "SolarDynamo"
 uuid = "b77104d9-93ed-49fd-acfd-b9fe0cfcdc18"
+version = "1.1.0"
 authors = ["Simone Ulzega", "Andreas Scheidegger"]
-version = "1.0.0"
 
 [deps]
+DelayDiffEq = "bcd4f6db-9728-5f36-b5f7-82caef46ccdb"
 FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
-StochasticDelayDiffEq = "29a0d76e-afc8-11e9-03a4-eda52ae4b960"
+StochasticDiffEq = "789caeaf-c7a9-5a7d-9973-96adeb23e2a0"
 
 [compat]
+DelayDiffEq = "6"
 FFTW = "1.8.0"
 SpecialFunctions = "2.4.0"
 StaticArrays = "1.9.8"
-StochasticDelayDiffEq = "1.8.0"
+StochasticDiffEq = "7"
 julia = "1.10"
 
 [extras]
