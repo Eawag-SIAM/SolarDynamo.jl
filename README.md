@@ -20,7 +20,7 @@ Stochastic simulation of the number of sunspots.
 ```julia
 using SolarDynamo
 
-θ = [2.0,  # τ
+θ = [2.0,   # τ
      3,     # T
      8.5,   # Nd
      0.1,   # sigma
@@ -41,9 +41,11 @@ summary_statistics(res)
 
 
 # The window weights can also be precomputed:
-
 Tobs = 929
 window = hann_window(Tobs)
 summary_statistics(res, window)
-
 ```
+
+## Reference
+
+Ulzega, S., Beer, J., Ferriz-Mas, A., Dirmeier, S., & Albert, C. (2025). Shedding light on the solar dynamo using data-driven Bayesian parameter inference. The Astrophysical Journal, 992(1), 61.
