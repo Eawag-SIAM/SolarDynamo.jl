@@ -26,15 +26,16 @@ function f(u,h,p,t)     # Drift function
     # du = [dB/dt, d^2B/dt^2]
     τ, T, Nd, sigma, Bmax = p
     hist = h(p, t - T, idxs = 1)    # B[1](t-T)
+    inv_τ_2 = inv(τ^2)
     du1 = u[2]
-    du2 = -u[1]/τ^2 - 2*u[2]/τ - Nd/τ^2*ftilde(hist, 1, Bmax)
+    du2 = -u[1]*inv_τ_2 - 2*u[2]/τ - Nd*inv_τ_2 * ftilde(hist, 1, Bmax)
     SA[du1, du2]
 end
 
 function g(u,h,p,t)     # Diffusion function
     τ, T, Nd, sigma, Bmax = p
     du1 = 0
-    du2 = Bmax*sigma / (τ^(3/2))
+    du2 = Bmax*sigma / (τ * sqrt(τ))
     SA[du1, du2]
 end
 
